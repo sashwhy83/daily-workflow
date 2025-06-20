@@ -13,6 +13,7 @@
 <body>
 <!-- preload the ding sound -->
 <audio id="ding" src="ding.mp3" preload="auto"></audio>
+<audio id="complete" src="completed.mp3" preload="auto"></audio>
 
   <div class="window">
     <div class="window-header">
@@ -229,7 +230,8 @@ FINAL_KEYWORDS_LINE
   const textArea   = document.getElementById('promptBox');
   const finishBtn  = document.getElementById('finishBtn');
   const progressEl = document.getElementById('progress');
-  const ding       = document.getElementById('ding');        // 🔔 sound element
+  const ding       = document.getElementById('ding');       // 🔔 per-task sound
+  const complete   = document.getElementById('complete');   // 🎉 all-done sound
 
   /* helper: recalc progress every change */
   function updateState() {
@@ -240,8 +242,7 @@ FINAL_KEYWORDS_LINE
     const remaining   = total - done;
 
     /* progress bar */
-    const pct = (done / total) * 100;
-    document.getElementById('barFill').style.width = pct + '%';
+    document.getElementById('barFill').style.width = (done / total) * 100 + '%';
 
     /* numeric text */
     progressEl.textContent = remaining
@@ -251,30 +252,32 @@ FINAL_KEYWORDS_LINE
     finishBtn.disabled = remaining !== 0;
 
     if (remaining === 0) {
+      /* 🎉 play celebration sound once */
+      complete.currentTime = 0;
+      complete.play().catch(()=>{});
       localStorage.setItem('etsyChecklistComplete', 'true');
-      setTimeout(goHome, 1200);
+      setTimeout(goHome, 1500);   // give sound 1.5 s before jump
     }
   }
 
   /* listeners */
   boxes.forEach(b => b.addEventListener('change', () => {
-    if (b.checked) {           // play only when turning ON
-      ding.currentTime = 0;    // rewind so dings can overlap
-      ding.play().catch(() => {/* ignore if user hasn't interacted yet */});
+    if (b.checked) {                 // play ding only on checking
+      ding.currentTime = 0;
+      ding.play().catch(()=>{});
     }
     updateState();
   }));
 
   textArea.addEventListener('input', updateState);
 
-  /* manual Finish (still works if someone clicks it) */
+  /* Finish button (still optional) */
   document.getElementById('form').addEventListener('submit', e => {
     e.preventDefault();
-    updateState();
+    updateState();                   // in case someone clicks early
   });
 
-  /* initialise counter on page load */
-  updateState();
+  updateState();                     // initialise
 
-  function goHome() { window.location.href = 'index.html'; }
+  function goHome(){ window.location.href = 'index.html'; }
 </script>
