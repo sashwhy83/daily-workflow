@@ -39,15 +39,15 @@
   </div>
 
 <script>
-  /* status colour based on localStorage flag */
+  /* status colour based on checklist flag */
   const statusEl = document.getElementById('status');
-  if (localStorage.getItem('checklistComplete') === 'true'){
-    statusEl.classList.add('done');
+  if (localStorage.getItem('etsyChecklistComplete') === 'true'){
+    statusEl.classList.add('done');          /* turns the circle green */
   }
 
-  /* Start button navigates to checklist.html */
+  /* Go to the checklist page */
   document.getElementById('startBtn').onclick = () => {
-    window.location.href = 'checklist.html';
+    window.location.href = 'etsy-checklist.html';
   };
 </script>
 </body>
