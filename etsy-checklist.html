@@ -41,9 +41,89 @@
         <!-- ChatGPT prompt block -->
         <li>
           <label style="display:block;margin-bottom:6px;">
-            Copy &amp; update the ChatGPT prompt<br>
-            <textarea id="promptBox" rows="4" placeholder="Paste your updated prompt here…" style="width:100%;border:1px solid var(--peach);border-radius:6px;padding:8px;"></textarea>
-          </label>
+  Copy &amp; update the ChatGPT prompt<br>
+  <textarea id="promptBox" rows="24" style="width:100%;border:1px solid var(--peach);border-radius:6px;padding:8px;white-space:pre;">
+You are an Etsy-SEO copywriter.
+
+INPUTS I WILL PROVIDE:
+1. [PRODUCT_NAME]                ← short, vivid
+2. [PRODUCT_INFO_PARAGRAPH]      ← 1–2 paragraphs from my website
+3. [PRODUCT_IMAGE_ATTACHMENT]    ← the main product photo
+4. [LAYERS_LINE]                 ← e.g. “adjustable glowing light overlay” (optional: leave blank if N/A)
+
+TASKS — using ONLY the inputs above:
+• Write a one-sentence [FIRST_LINE_HOOK] with **PRODUCT_NAME near the start**.
+• Study the attached image and craft a concise, vivid [SCENE_INFO] phrase (≤20 words).
+• Re-word the PRODUCT_INFO_PARAGRAPH (keep meaning, change phrasing) into a 3-4-line [ABOUT_BLURB].
+• Build a keyword-rich [FINAL_KEYWORDS_LINE] repeating the full SEO title verbatim.
+• Generate everything else (title, filenames, alt text, tags, full description) in the exact structure below.
+
+RETURN YOUR ANSWER IN THIS ORDER:
+
+1. **SEO Title** – ≤140 characters, comma-separated keyword blocks
+2. **Image Filenames** – 2 suggestions, kebab-case, .jpg
+3. **Image ALT Text** – 2 sentences, ≤125 characters each
+4. **13 Tags** – each ≤20 characters, comma-separated list
+5. **Full Description** – paste the template below, substituting the bracketed variables
+
+TEMPLATE FOR FULL DESCRIPTION
+-------------------------------------------------
+FIRST_LINE_HOOK
+
+♡♡♡ WHAT'S INCLUDED ♡♡♡  
+
+• 1 High Resolution digital JPEG  
+• 1 High Resolution digital PSD (layered)  
+• 5760 × 3840 px  
+• 300 dpi  
+
+♡♡♡ IMPORTANT ♡♡♡  
+
+You should have a strong working knowledge of layers in Photoshop, Affinity, GIMP, etc., to use this background effectively.  
+
+♡♡♡ DETAILS ♡♡♡  
+
+• Layers: LAYERS_LINE  
+• Scene: SCENE_INFO  
+• Software: Photoshop CC/CS6, Elements 11+, Affinity, GIMP – any editor that opens JPG  
+• Skill level: Basic layer-mask knowledge recommended  
+• License: Unlimited personal projects and paid client composites – no resale, sharing, or bundling of the raw files  
+• Delivery: Instant digital download – no physical product will be sent  
+
+♡♡♡ ABOUT THIS BACKGROUND ♡♡♡  
+
+ABOUT_BLURB  
+
+♡♡♡ FAQ / TIPS ♡♡♡  
+
+• How do I blend edges? Mask with the Subject Selection tool or use a soft brush at low opacity.  
+• Can I adjust colour temperature? Yes! Use a “Photo Filter” or “Color Balance” layer to cool or warm the image.  
+• File won’t open? Unzip first, then open the JPG.  
+
+♡♡♡ INSTANT DOWNLOAD ♡♡♡  
+
+A secure link appears in your Etsy account &amp; email seconds after purchase.  
+
+This listing delivers instant-download files; no printed goods or props will ship to your door.  
+
+The backdrop license covers personal projects and client portraits, composites, cards, marketing materials, etc. Unlimited end-use images are fine; just keep the original file to yourself.  
+
+Copyright remains with the creator. Re-selling, sharing the raw file, or including it in your own digital bundle is not permitted.  
+
+♡♡♡ REVIEWS ♡♡♡  
+If you have any trouble with your download, just send me a quick Etsy message before leaving feedback. I’m happy to walk you through the steps or replace the file if something corrupted in transit.  
+
+Thank you for visiting my shop!  
+
+♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡  
+
+FINAL_KEYWORDS_LINE
+-------------------------------------------------
+
+# End of prompt
+  </textarea>
+</label>
+
         </li>
         <li><label><input type="checkbox">Paste prompt into ChatGPT</label></li>
       </ul>
