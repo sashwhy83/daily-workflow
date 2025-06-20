@@ -51,14 +51,16 @@ html,body{
   right:12px; top:11px;
 }
 
-/* Etsy badge where cherries used to be */
+/* Etsy badge (top-left corner) */
 .badge{
   position:absolute;
-  left:-32px;           /* tweak until it sits just right */
-  top:-46px;
-  width:64px;           /* keeps same scale as cherries */
-  border-radius:8px;    /* optional: soften the square edges */
+  left:-20px;     /* pull it in toward the window a bit */
+  top:-36px;      /* drop it lower so it kisses the header */
+  width:48px;     /* shrink—was 64px */
+  height:auto;    /* keep aspect ratio */
+  border-radius:50%;   /* makes the orange octagon read as a circle */
 }
+
 
 
 /* ---- title area ---- */
