@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>My Daily Checklist</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 40px auto; }
+    li.done { text-decoration: line-through; color: gray; }
+  </style>
+</head>
+<body>
+  <h1>Daily Checklist</h1>
+
+  <ul id="tasks"></ul>
+
+  <button id="add">Ask ChatGPT for today’s tasks</button>
+
+  <script>
+    /* --- basic local-storage checklist --- */
+    const list = document.getElementById('tasks');
+    let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+    render();
+
+    document.getElementById('add').onclick = async () => {
+      // For now just add a dummy task so you see it works:
+      // Replace this later with the /api call to ChatGPT
+      const newTasks = ['Example task 1', 'Example task 2'];
+      tasks = tasks.concat(newTasks);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      render();
+    };
+
+    function render() {
+      list.innerHTML = '';
+      tasks.forEach((t, i) => {
+        const li = document.createElement('li');
+        li.textContent = t;
+        li.onclick = () => {
+          li.classList.toggle('done');
+        };
+        list.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
