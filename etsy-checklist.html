@@ -137,12 +137,53 @@ FINAL_KEYWORDS_LINE
         <li><label><input type="checkbox">Update the Listing with the NEW Product Info & Images</label></li>
         <li><label><input type="checkbox">Publish ✨</label></li>
       </ul>
-
+      
+<p id="progress" style="text-align:center;font-size:14px;margin:24px 0 8px;"></p>
       <button class="btn" id="finishBtn" disabled>FINISH</button>
     </form>
   </div>
 
 <script>
-  /* every checkbox + the textarea must be filled/checked */
+  /* grab elements */
   const boxes      = document.querySelectorAll('input[type=checkbox]');
-  const textArea   = document.getEle
+  const textArea   = document.getElementById('promptBox');
+  const finishBtn  = document.getElementById('finishBtn');
+  const progressEl = document.getElementById('progress');
+
+  /* helper: recalc progress every change */
+  function updateState() {
+    const filled      = [...boxes].filter(b => b.checked).length;
+    const promptDone  = textArea.value.trim() !== '';
+    const total       = boxes.length + 1;               // +1 for textarea
+    const done        = filled + (promptDone ? 1 : 0);
+    const remaining   = total - done;
+
+    /* update UI */
+    progressEl.textContent = remaining
+      ? `${remaining} task${remaining > 1 ? 's' : ''} remaining`
+      : 'All tasks complete! Redirecting…';
+
+    finishBtn.disabled = remaining !== 0;
+
+    /* auto-redirect when finished */
+    if (remaining === 0) {
+      localStorage.setItem('etsyChecklistComplete', 'true');   // turn circle green
+      setTimeout(goHome, 1200);                                // 1.2 s pause
+    }
+  }
+
+  /* listeners */
+  boxes.forEach(b  => b.addEventListener('change', updateState));
+  textArea.addEventListener('input', updateState);
+
+  /* manual Finish (still works if you prefer a click) */
+  document.getElementById('form').addEventListener('submit', e => {
+    e.preventDefault();
+    updateState(); // in case someone clicks early
+  });
+
+  /* initialise counter on page load */
+  updateState();
+
+  function goHome() { window.location.href = 'index.html'; }
+</script>
