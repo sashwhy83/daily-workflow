@@ -76,8 +76,12 @@ h1{
   color:var(--peach-dark);
   font-size:14px;
   margin-bottom:32px;
+  text-transform: uppercase;
 }
-
+h3{
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
 /* ---- button ---- */
 .btn{
   display:block;
