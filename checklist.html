@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checklist – Etsy Listing</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="window">
+    <div class="window-header">
+      <div class="close-btn" onclick="goHome()">×</div>
+    </div>
+
+    <h1>Checklist</h1>
+    <p class="subtitle">Complete every task</p>
+
+    <ul class="checklist" id="list">
+      <li><label><input type="checkbox">Write SEO title</label></li>
+      <li><label><input type="checkbox">Add 10 photos</label></li>
+      <li><label><input type="checkbox">Fill description & tags</label></li>
+      <li><label><input type="checkbox">Set price & quantity</label></li>
+    </ul>
+
+    <button class="btn" id="finishBtn" disabled>FINISH</button>
+  </div>
+
+<script>
+  const boxes = document.querySelectorAll('input[type=checkbox]');
+  const finishBtn = document.getElementById('finishBtn');
+
+  function updateState(){
+    const allDone = [...boxes].every(b=>b.checked);
+    finishBtn.disabled = !allDone;
+  }
+  boxes.forEach(b => b.onchange = updateState);
+
+  finishBtn.onclick = () => {
+    localStorage.setItem('checklistComplete','true');
+    goHome();
+  };
+
+  function goHome(){
+    window.location.href = 'index.html';
+  }
+</script>
+</body>
+</html>
