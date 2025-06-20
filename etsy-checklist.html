@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!-- preload the ding sound -->
+<audio id="ding" src="ding.mp3" preload="auto"></audio>
 
   <div class="window">
     <div class="window-header">
@@ -227,41 +229,48 @@ FINAL_KEYWORDS_LINE
   const textArea   = document.getElementById('promptBox');
   const finishBtn  = document.getElementById('finishBtn');
   const progressEl = document.getElementById('progress');
+  const ding       = document.getElementById('ding');        // 🔔 sound element
 
   /* helper: recalc progress every change */
   function updateState() {
-  const filled      = [...boxes].filter(b => b.checked).length;
-  const promptDone  = textArea.value.trim() !== '';
-  const total       = boxes.length + 1;             // +1 for textarea
-  const done        = filled + (promptDone ? 1 : 0);
-  const remaining   = total - done;
+    const filled      = [...boxes].filter(b => b.checked).length;
+    const promptDone  = textArea.value.trim() !== '';
+    const total       = boxes.length + 1;          // +1 for textarea
+    const done        = filled + (promptDone ? 1 : 0);
+    const remaining   = total - done;
 
-  /* --- progress bar --- */
-  const pct = (done / total) * 100;
-  document.getElementById('barFill').style.width = pct + '%';
+    /* progress bar */
+    const pct = (done / total) * 100;
+    document.getElementById('barFill').style.width = pct + '%';
 
-  /* --- numeric text --- */
-  progressEl.textContent = remaining
-    ? `${remaining} task${remaining > 1 ? 's' : ''} remaining`
-    : 'All tasks complete! Redirecting…';
+    /* numeric text */
+    progressEl.textContent = remaining
+      ? `${remaining} task${remaining > 1 ? 's' : ''} remaining`
+      : 'All tasks complete! Redirecting…';
 
-  finishBtn.disabled = remaining !== 0;
+    finishBtn.disabled = remaining !== 0;
 
-  if (remaining === 0) {
-    localStorage.setItem('etsyChecklistComplete', 'true');
-    setTimeout(goHome, 1200);
+    if (remaining === 0) {
+      localStorage.setItem('etsyChecklistComplete', 'true');
+      setTimeout(goHome, 1200);
+    }
   }
-}
-
 
   /* listeners */
-  boxes.forEach(b  => b.addEventListener('change', updateState));
+  boxes.forEach(b => b.addEventListener('change', () => {
+    if (b.checked) {           // play only when turning ON
+      ding.currentTime = 0;    // rewind so dings can overlap
+      ding.play().catch(() => {/* ignore if user hasn't interacted yet */});
+    }
+    updateState();
+  }));
+
   textArea.addEventListener('input', updateState);
 
-  /* manual Finish (still works if you prefer a click) */
+  /* manual Finish (still works if someone clicks it) */
   document.getElementById('form').addEventListener('submit', e => {
     e.preventDefault();
-    updateState(); // in case someone clicks early
+    updateState();
   });
 
   /* initialise counter on page load */
