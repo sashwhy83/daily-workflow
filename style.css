@@ -121,3 +121,56 @@ h1{
 
 /* responsive tweak */
 @media(max-width:420px){ h1{font-size:34px;} }
+
+/* ─── cute circle checkboxes ───────────────────────────── */
+.check {
+  display: block;                 /* makes the whole line clickable */
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+/* hide the default box */
+.check input {
+  position: absolute;
+  opacity: 0;
+}
+
+/* text padding so the circle has space */
+.check span {
+  padding-left: 36px;
+  line-height: 28px;
+  display: inline-block;
+}
+
+/* circle outline */
+.check span::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 2px;
+  width: 24px; height: 24px;
+  border: 4px solid var(--peach);
+  border-radius: 50%;
+  box-sizing: border-box;
+  background: transparent;
+  transition: background .25s ease, transform .25s ease;
+}
+
+/* fill + pop when checked */
+@keyframes pop {
+  0%   { transform: scale(.8); }
+  60%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+.check input:checked + span::before {
+  background: var(--green);          /* circle turns green */
+  animation: pop .3s ease both;
+}
+
+/* optional: strike-through completed text */
+.check input:checked + span {
+  color: #888;
+  text-decoration: line-through;
+}
+
