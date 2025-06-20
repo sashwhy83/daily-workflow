@@ -107,7 +107,19 @@ h1{
   width:36px; height:36px;
   stroke:#fff; stroke-width:10px; stroke-linecap:round; stroke-linejoin:round;
 }
+/* --- status-circle icon --- */
+.check-icon {
+  width: 44px;              /* any size you like */
+  height: 44px;
+}
 
+.check-icon path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 /* ---- checklist page ---- */
 .checklist{
   list-style:none;
