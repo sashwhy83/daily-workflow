@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Etsy Listing Checklist</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="window">
+    <div class="window-header">
+      <div class="close-btn" onclick="goHome()">×</div>
+    </div>
+
+    <h1>Checklist</h1>
+    <p class="subtitle">Finish every field, then hit Finish</p>
+
+    <form id="form">
+      <ul class="checklist">
+        <li class="step">
+          <label>📝 Keyword / competitor research<br>
+            <input type="text" placeholder="Paste 2–3 competitor URLs">
+          </label>
+        </li>
+
+        <li class="step">
+          <label>🏷️ Optimised title<br>
+            <input type="text" placeholder="Ex: Boho Watercolor Floral PNG">
+          </label>
+        </li>
+
+        <li class="step">
+          <label>💰 Price (USD)<br>
+            <input type="number" min="0" step="0.01" placeholder="Eg. 5.99">
+          </label>
+        </li>
+
+        <li class="step">
+          <label>🖼️ Main photo URL<br>
+            <input type="url" placeholder="https://…">
+          </label>
+        </li>
+      </ul>
+
+      <button class="btn" id="finishBtn" disabled>FINISH</button>
+    </form>
+  </div>
+
+<script>
+  const inputs    = document.querySelectorAll('.step input');
+  const finishBtn = document.getElementById('finishBtn');
+
+  /* enable Finish only when every input has content */
+  function updateState(){
+    const allFilled = [...inputs].every(el => el.value.trim() !== '');
+    finishBtn.disabled = !allFilled;
+  }
+  inputs.forEach(el => el.addEventListener('input', updateState));
+
+  /* mark complete + return home */
+  document.getElementById('form').addEventListener('submit', e=>{
+    e.preventDefault();
+    localStorage.setItem('etsyChecklistComplete','true');
+    goHome();
+  });
+
+  function goHome(){ window.location.href = 'index.html'; }
+</script>
+</body>
+</html>
