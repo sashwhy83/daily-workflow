@@ -174,3 +174,8 @@ h1{
   text-decoration: line-through;
 }
 
+/* ─── body text for checklist items ───────────────────── */
+.check span {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+}
