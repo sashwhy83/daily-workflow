@@ -138,6 +138,11 @@ FINAL_KEYWORDS_LINE
         <li><label><input type="checkbox">Publish ✨</label></li>
       </ul>
       
+<!-- visual progress bar -->
+<div id="barWrap" style="width:80%;height:14px;background:#eee;border-radius:8px;margin:24px auto 6px;overflow:hidden;">
+  <div id="barFill" style="height:100%;width:0;background:var(--peach);transition:width .3s;"></div>
+</div>
+      
 <p id="progress" style="text-align:center;font-size:14px;margin:24px 0 8px;"></p>
       <button class="btn" id="finishBtn" disabled>FINISH</button>
     </form>
@@ -152,25 +157,29 @@ FINAL_KEYWORDS_LINE
 
   /* helper: recalc progress every change */
   function updateState() {
-    const filled      = [...boxes].filter(b => b.checked).length;
-    const promptDone  = textArea.value.trim() !== '';
-    const total       = boxes.length + 1;               // +1 for textarea
-    const done        = filled + (promptDone ? 1 : 0);
-    const remaining   = total - done;
+  const filled      = [...boxes].filter(b => b.checked).length;
+  const promptDone  = textArea.value.trim() !== '';
+  const total       = boxes.length + 1;             // +1 for textarea
+  const done        = filled + (promptDone ? 1 : 0);
+  const remaining   = total - done;
 
-    /* update UI */
-    progressEl.textContent = remaining
-      ? `${remaining} task${remaining > 1 ? 's' : ''} remaining`
-      : 'All tasks complete! Redirecting…';
+  /* --- progress bar --- */
+  const pct = (done / total) * 100;
+  document.getElementById('barFill').style.width = pct + '%';
 
-    finishBtn.disabled = remaining !== 0;
+  /* --- numeric text --- */
+  progressEl.textContent = remaining
+    ? `${remaining} task${remaining > 1 ? 's' : ''} remaining`
+    : 'All tasks complete! Redirecting…';
 
-    /* auto-redirect when finished */
-    if (remaining === 0) {
-      localStorage.setItem('etsyChecklistComplete', 'true');   // turn circle green
-      setTimeout(goHome, 1200);                                // 1.2 s pause
-    }
+  finishBtn.disabled = remaining !== 0;
+
+  if (remaining === 0) {
+    localStorage.setItem('etsyChecklistComplete', 'true');
+    setTimeout(goHome, 1200);
   }
+}
+
 
   /* listeners */
   boxes.forEach(b  => b.addEventListener('change', updateState));
