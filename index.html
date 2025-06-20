@@ -1,46 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>My Daily Checklist</title>
-  <style>
-    body { font-family: sans-serif; max-width: 600px; margin: 40px auto; }
-    li.done { text-decoration: line-through; color: gray; }
-  </style>
+  <meta charset="UTF-8">
+  <title>Daily Workflow – Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Daily Checklist</h1>
 
-  <ul id="tasks"></ul>
+  <div class="window">
+    <div class="window-header">
+      <div class="close-btn">×</div>
+      <!-- cute cherries SVG -->
+      <svg class="cherries" viewBox="0 0 64 64" fill="none">
+        <circle cx="20" cy="40" r="12" fill="#f9b5ac"/>
+        <circle cx="44" cy="40" r="12" fill="#f9b5ac"/>
+        <path d="M32 16 C32 4 50 4 50 20" stroke="#b9775b" stroke-width="4" fill="none"/>
+        <path d="M32 16 C32 4 14 4 14 20" stroke="#b9775b" stroke-width="4" fill="none"/>
+        <circle cx="18" cy="38" r="2" fill="#b9775b"/>
+        <circle cx="42" cy="38" r="2" fill="#b9775b"/>
+        <path d="M16 44 Q20 46 24 44" stroke="#b9775b" stroke-width="2" fill="none"/>
+        <path d="M40 44 Q44 46 48 44" stroke="#b9775b" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
 
-  <button id="add">Ask ChatGPT for today’s tasks</button>
+    <h1>Etsy Listing</h1>
+    <p class="subtitle">DIGITAL BACKGROUNDS</p>
 
-  <script>
-    /* --- basic local-storage checklist --- */
-    const list = document.getElementById('tasks');
-    let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-    render();
+    <button class="btn" id="startBtn">START</button>
 
-    document.getElementById('add').onclick = async () => {
-      // For now just add a dummy task so you see it works:
-      // Replace this later with the /api call to ChatGPT
-      const newTasks = ['Example task 1', 'Example task 2'];
-      tasks = tasks.concat(newTasks);
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-      render();
-    };
+    <!-- status -->
+    <div id="status" class="status-circle">
+      <svg viewBox="0 0 24 24">
+        <polyline points="4 12 10 17.5 20 6"></polyline>
+      </svg>
+    </div>
+  </div>
 
-    function render() {
-      list.innerHTML = '';
-      tasks.forEach((t, i) => {
-        const li = document.createElement('li');
-        li.textContent = t;
-        li.onclick = () => {
-          li.classList.toggle('done');
-        };
-        list.appendChild(li);
-      });
-    }
-  </script>
+<script>
+  /* status colour based on localStorage flag */
+  const statusEl = document.getElementById('status');
+  if (localStorage.getItem('checklistComplete') === 'true'){
+    statusEl.classList.add('done');
+  }
+
+  /* Start button navigates to checklist.html */
+  document.getElementById('startBtn').onclick = () => {
+    window.location.href = 'checklist.html';
+  };
+</script>
 </body>
 </html>
+
