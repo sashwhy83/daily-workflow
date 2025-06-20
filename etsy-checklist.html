@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Etsy Listing Checklist</title>
+  <title>Etsy Listing Checklist – Digital Backgrounds</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,33 +13,48 @@
     </div>
 
     <h1>Checklist</h1>
-    <p class="subtitle">Finish every field, then hit Finish</p>
+    <p class="subtitle">Complete every task before publishing</p>
 
     <form id="form">
+
+      <!-- ─── PRODUCT LISTING PREPARATION ──────────────────────────────── -->
+      <h3 style="padding-left:24px;">Product Listing Preparation</h3>
       <ul class="checklist">
-        <li class="step">
-          <label>📝 Keyword / competitor research<br>
-            <input type="text" placeholder="Paste 2–3 competitor URLs">
+        <li><label><input type="checkbox">Upload product ZIP file to Dropbox</label></li>
+        <li><label><input type="checkbox">Open Canva listing **template**</label></li>
+        <li><label><input type="checkbox">Add NEW Etsy product images</label></li>
+        <li><label><input type="checkbox">Download images (JPG 1620 × 1080, Q 100)</label></li>
+
+        <!-- download-link sub-steps -->
+        <li>
+          <label><input type="checkbox" class="sub">Update **product download link**<br>
+            <small style="margin-left:32px;display:block;">
+              • Use the Dropbox link<br>
+              • Change <code>dl=0</code> → <code>dl=1</code> for instant download
+            </small>
           </label>
         </li>
 
-        <li class="step">
-          <label>🏷️ Optimised title<br>
-            <input type="text" placeholder="Ex: Boho Watercolor Floral PNG">
-          </label>
-        </li>
+        <li><label><input type="checkbox">Insert link on “Download” button</label></li>
+        <li><label><input type="checkbox">Export page as <strong>PDF (non-flattened)</strong></label></li>
 
-        <li class="step">
-          <label>💰 Price (USD)<br>
-            <input type="number" min="0" step="0.01" placeholder="Eg. 5.99">
+        <!-- ChatGPT prompt block -->
+        <li>
+          <label style="display:block;margin-bottom:6px;">
+            Copy &amp; update the ChatGPT prompt<br>
+            <textarea id="promptBox" rows="4" placeholder="Paste your updated prompt here…" style="width:100%;border:1px solid var(--peach);border-radius:6px;padding:8px;"></textarea>
           </label>
         </li>
+        <li><label><input type="checkbox">Paste prompt into ChatGPT</label></li>
+      </ul>
 
-        <li class="step">
-          <label>🖼️ Main photo URL<br>
-            <input type="url" placeholder="https://…">
-          </label>
-        </li>
+      <!-- ─── PRODUCT LISTING ON ETSY ──────────────────────────────────── -->
+      <h3 style="padding-left:24px;">Product Listing on Etsy</h3>
+      <ul class="checklist">
+        <li><label><input type="checkbox">Login to Etsy (Ashlyn Mae Photography)</label></li>
+        <li><label><input type="checkbox">Duplicate a <abbr title="Digital Background">DBG</abbr> listing</label></li>
+        <li><label><input type="checkbox">Update listing with NEW product info &amp; images</label></li>
+        <li><label><input type="checkbox">Publish ✨</label></li>
       </ul>
 
       <button class="btn" id="finishBtn" disabled>FINISH</button>
@@ -47,24 +62,6 @@
   </div>
 
 <script>
-  const inputs    = document.querySelectorAll('.step input');
-  const finishBtn = document.getElementById('finishBtn');
-
-  /* enable Finish only when every input has content */
-  function updateState(){
-    const allFilled = [...inputs].every(el => el.value.trim() !== '');
-    finishBtn.disabled = !allFilled;
-  }
-  inputs.forEach(el => el.addEventListener('input', updateState));
-
-  /* mark complete + return home */
-  document.getElementById('form').addEventListener('submit', e=>{
-    e.preventDefault();
-    localStorage.setItem('etsyChecklistComplete','true');
-    goHome();
-  });
-
-  function goHome(){ window.location.href = 'index.html'; }
-</script>
-</body>
-</html>
+  /* every checkbox + the textarea must be filled/checked */
+  const boxes      = document.querySelectorAll('input[type=checkbox]');
+  const textArea   = document.getEle
