@@ -10,10 +10,10 @@
 </head>
 <body>
 
+  <!-- ─── ETSY CARD ─────────────────────────────────────────────── -->
   <div class="window">
     <div class="window-header">
       <div class="close-btn">×</div>
-      <!-- Etsy badge -->
       <img src="etsy.png" alt="Etsy logo" class="badge">
     </div>
 
@@ -22,26 +22,52 @@
 
     <button class="btn" id="startBtn">START</button>
 
-    <!-- status -->
     <div id="status" class="status-circle">
-<svg viewBox="0 0 32 32" aria-hidden="true" class="check-icon">
-  <path d="M8 17 L14 23 L24 11"></path>
-</svg>
+      <svg viewBox="0 0 32 32" aria-hidden="true" class="check-icon">
+        <path d="M8 17 L14 23 L24 11"></path>
+      </svg>
     </div>
   </div>
 
-<script>
-  /* status colour based on checklist flag */
-  const statusEl = document.getElementById('status');
-  if (localStorage.getItem('etsyChecklistComplete') === 'true'){
-    statusEl.classList.add('done');          /* turns the circle green */
-  }
+  <!-- ─── YOUTUBE CARD ─────────────────────────────────────────── -->
+  <div class="window youtube">
+    <div class="window-header">
+      <div class="close-btn">×</div>
+      <!-- optional: add a YouTube logo here: -->
+      <!-- <img src="youtube.png" alt="YouTube logo" class="badge"> -->
+    </div>
 
-  /* Go to the checklist page */
-  document.getElementById('startBtn').onclick = () => {
-    window.location.href = 'etsy-checklist.html';
-  };
-</script>
+    <h1>YouTube Video</h1>
+    <p class="subtitle">Kozy Kove Channel</p>
+
+    <button class="btn" id="ytStartBtn">START</button>
+
+    <div id="ytStatus" class="status-circle">
+      <svg viewBox="0 0 32 32" class="check-icon">
+        <path d="M8 17 L14 23 L24 11"></path>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ─── SHARED SCRIPT ──────────────────────────────────────────── -->
+  <script>
+    // — Etsy card status & link
+    const statusEl = document.getElementById('status');
+    if (localStorage.getItem('etsyChecklistComplete') === 'true') {
+      statusEl.classList.add('done');
+    }
+    document.getElementById('startBtn').onclick = () => {
+      window.location.href = 'etsy-checklist.html';
+    };
+
+    // — YouTube card status & link
+    const ytStatus = document.getElementById('ytStatus');
+    if (localStorage.getItem('youtubeChecklistComplete') === 'true') {
+      ytStatus.classList.add('done');
+    }
+    document.getElementById('ytStartBtn').onclick = () => {
+      window.location.href = 'youtube-checklist.html';
+    };
+  </script>
 </body>
 </html>
-
