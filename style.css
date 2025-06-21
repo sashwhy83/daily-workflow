@@ -211,3 +211,7 @@ h3{
   height:auto;
   border-radius:50%;         /* optional: keeps the round look */
 }
+/* give some space between the two cards */
+.youtube {
+  margin-top: 60px;
+}
