@@ -200,3 +200,14 @@ h3{
   font-family: Arial, sans-serif;
   font-size: 13px;
 }
+
+/* Etsy logo centered on checklist page */
+.logo-center{
+  position:absolute;
+  top:-42px;                 /* nudges it down onto the header */
+  left:50%;                  /* centers horizontally */
+  transform:translateX(-50%);
+  width:48px;                /* same scale as home-page badge */
+  height:auto;
+  border-radius:50%;         /* optional: keeps the round look */
+}
