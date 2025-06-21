@@ -211,7 +211,18 @@ h3{
   height:auto;
   border-radius:50%;         /* optional: keeps the round look */
 }
+
 /* give some space between the two cards */
 .youtube {
   margin-top: 60px;
+}
+
+/* cover image inside checklist window */
+.cover-image {
+  display: block;
+  width: 90%;              /* fill most of the window */
+  max-width: 640px;        /* cap its size */
+  margin: 16px auto 24px;  /* space above & below */
+  border-radius: 8px;      /* match window corners */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
