@@ -96,8 +96,17 @@ h3{
   color:var(--cream);
   cursor:pointer;
   transition:.2s;
+  text-decoration: none;       /* <-- prevent underlines */
 }
 .btn:hover{ background:var(--peach-dark); }
+
+.btn,
+.btn:link,
+.btn:visited,
+.btn:hover,
+.btn:active {
+  text-decoration: none;
+}
 
 /* ---- status check ---- */
 .status-circle{
