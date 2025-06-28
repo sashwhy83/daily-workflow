@@ -254,20 +254,6 @@ h3{
   justify-items: center;
 }
 
-/* optional: make all cards the same height */
-.window {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-/* ─── modules grid container ───────────────── */
-.modules {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 40px;
-  padding: 40px 20px;
-  justify-items: center;
-}
 
 /* remove any extra vertical spacing on cards now that grid handles gaps */
 .window.youtube { margin-top: 0; }
