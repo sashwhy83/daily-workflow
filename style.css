@@ -235,3 +235,12 @@ h3{
   border-radius: 8px;      /* match window corners */
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
+/* remove underline from the YouTube START link */
+.window.youtube a {
+  text-decoration: none;
+  display: inline-block;  /* keeps its block-level button behavior */
+}
+.window.youtube a:hover,
+.window.youtube a:active {
+  text-decoration: none;
+}
