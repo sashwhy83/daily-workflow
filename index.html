@@ -51,24 +51,32 @@
   </div>
 
   <!-- ─── SHARED SCRIPT ──────────────────────────────────────────── -->
-  <script>
-    // — Etsy card status & link
-    const statusEl = document.getElementById('status');
-    if (localStorage.getItem('etsyChecklistComplete') === 'true') {
-      statusEl.classList.add('done');
-    }
-    document.getElementById('startBtn').onclick = () => {
-      window.location.href = 'etsy-checklist.html';
-    };
+<script>
+  // ─── daily auto-reset ─────────────────────────────────────
+  const today = new Date().toLocaleDateString();
+  if (localStorage.getItem('lastDay') !== today) {
+    localStorage.setItem('etsyChecklistComplete',  'false');
+    localStorage.setItem('youtubeChecklistComplete','false');
+    localStorage.setItem('lastDay', today);
+  }
 
-    // — YouTube card status & link
-    const ytStatus = document.getElementById('ytStatus');
-    if (localStorage.getItem('youtubeChecklistComplete') === 'true') {
-      ytStatus.classList.add('done');
-    }
-    document.getElementById('ytStartBtn').onclick = () => {
-      window.location.href = 'youtube-checklist.html';
-    };
-  </script>
+  // — Etsy card status & link
+  const statusEl = document.getElementById('status');
+  if (localStorage.getItem('etsyChecklistComplete') === 'true') {
+    statusEl.classList.add('done');
+  }
+  document.getElementById('startBtn').onclick = () => {
+    window.location.href = 'etsy-checklist.html';
+  };
+
+  // — YouTube card status
+  const ytStatus = document.getElementById('ytStatus');
+  if (localStorage.getItem('youtubeChecklistComplete') === 'true') {
+    ytStatus.classList.add('done');
+  }
+  // (You’re already using an <a> around your button, so no JS needed here for navigation.)
+
+</script>
+
 </body>
 </html>
