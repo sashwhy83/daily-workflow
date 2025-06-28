@@ -107,6 +107,25 @@
     ytStatus.classList.add('done');
   }
   // (You’re already using an <a> around your button, so no JS needed here for navigation.)
+// … existing Etsy & YouTube code …
+
+// Module 3
+const mod3Status = document.getElementById('mod3Status');
+if (localStorage.getItem('mod3Complete') === 'true') {
+  mod3Status.classList.add('done');
+}
+document.getElementById('mod3Start').onclick = () => {
+  window.location.href = 'module3-checklist.html';
+};
+
+// Module 4
+const mod4Status = document.getElementById('mod4Status');
+if (localStorage.getItem('mod4Complete') === 'true') {
+  mod4Status.classList.add('done');
+}
+document.getElementById('mod4Start').onclick = () => {
+  window.location.href = 'module4-checklist.html';
+};
 
 </script>
 
