@@ -10,8 +10,10 @@
 </head>
 <body>
 
+  <!-- ─── GRID WRAPPER FOR ALL MODULE CARDS ───────────────────────── -->
   <div class="modules">
-    <!-- ─── ETSY CARD ─────────────────────────────────────────────────── -->
+
+    <!-- ─── ETSY CARD ─────────────────────────────────────────────── -->
     <div class="window">
       <div class="window-header">
         <div class="close-btn">×</div>
@@ -27,7 +29,7 @@
       </div>
     </div>
 
-    <!-- ─── YOUTUBE CARD ───────────────────────────────────────────────── -->
+    <!-- ─── YOUTUBE CARD ─────────────────────────────────────────── -->
     <div class="window youtube">
       <div class="window-header">
         <div class="close-btn">×</div>
@@ -45,7 +47,7 @@
       </div>
     </div>
 
-    <!-- ─── MODULE 3 CARD ──────────────────────────────────────────────── -->
+    <!-- ─── MODULE 3 CARD ─────────────────────────────────────────── -->
     <div class="window">
       <div class="window-header">
         <div class="close-btn">×</div>
@@ -60,7 +62,7 @@
       </div>
     </div>
 
-    <!-- ─── MODULE 4 CARD ──────────────────────────────────────────────── -->
+    <!-- ─── MODULE 4 CARD ─────────────────────────────────────────── -->
     <div class="window">
       <div class="window-header">
         <div class="close-btn">×</div>
@@ -74,21 +76,22 @@
         </svg>
       </div>
     </div>
+
   </div><!-- /.modules -->
 
   <!-- ─── SHARED SCRIPT ─────────────────────────────────────────────── -->
   <script>
-    // daily auto-reset
+    // ─── daily reset at midnight ───────────────────────────────────
     const today = new Date().toLocaleDateString();
     if (localStorage.getItem('lastDay') !== today) {
-      localStorage.setItem('etsyChecklistComplete',   'false');
-      localStorage.setItem('youtubeChecklistComplete','false');
-      localStorage.setItem('mod3Complete',            'false');
-      localStorage.setItem('mod4Complete',            'false');
-      localStorage.setItem('lastDay', today);
+      localStorage.setItem('etsyChecklistComplete',    'false');
+      localStorage.setItem('youtubeChecklistComplete', 'false');
+      localStorage.setItem('mod3Complete',             'false');
+      localStorage.setItem('mod4Complete',             'false');
+      localStorage.setItem('lastDay',                  today);
     }
 
-    // Etsy card
+    // — Etsy card
     const statusEl = document.getElementById('status');
     if (localStorage.getItem('etsyChecklistComplete') === 'true') {
       statusEl.classList.add('done');
@@ -97,14 +100,14 @@
       window.location.href = 'etsy-checklist.html';
     };
 
-    // YouTube card
+    // — YouTube card
     const ytStatus = document.getElementById('ytStatus');
     if (localStorage.getItem('youtubeChecklistComplete') === 'true') {
       ytStatus.classList.add('done');
     }
-    // link is pure HTML <a> so no JS needed for navigation
+    // navigation via the <a> wrapper, no JS needed
 
-    // Module 3
+    // — Module 3
     const mod3Status = document.getElementById('mod3Status');
     if (localStorage.getItem('mod3Complete') === 'true') {
       mod3Status.classList.add('done');
@@ -113,7 +116,7 @@
       window.location.href = 'module3-checklist.html';
     };
 
-    // Module 4
+    // — Module 4
     const mod4Status = document.getElementById('mod4Status');
     if (localStorage.getItem('mod4Complete') === 'true') {
       mod4Status.classList.add('done');
