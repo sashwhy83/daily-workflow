@@ -245,26 +245,25 @@ h3{
 .window.youtube a:active {
   text-decoration: none;
 }
-/* ─── modules grid ───────────────────────── */
-/* ─── force a 2-column grid, collapse to 1 on narrow screens ───────────────── */
+
+/* ─── modules grid container ───────────────── */
 .modules {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);  /* always two columns */
+  grid-template-columns: repeat(2, 1fr);
   gap: 40px;
   padding: 40px 20px;
   justify-items: center;
-  max-width: 1200px;                      /* optional: keeps grid centered */
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 @media (max-width: 800px) {
   .modules {
-    grid-template-columns: 1fr;           /* stack to one column on small screens */
+    grid-template-columns: 1fr;
   }
 }
 
-
-
-/* remove any extra vertical spacing on cards now that grid handles gaps */
-.window.youtube { margin-top: 0; }
-.window { margin: 0; }
+/* only windows inside .modules lose their auto-centering */
+.modules .window {
+  margin: 0;
+}
