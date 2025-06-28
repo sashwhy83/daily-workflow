@@ -10,51 +10,45 @@
 </head>
 <body>
 
-  <!-- ─── ETSY CARD ─────────────────────────────────────────────── -->
-  <div class="window">
-    <div class="window-header">
-      <div class="close-btn">×</div>
-      <img src="etsy.png" alt="Etsy logo" class="badge">
-    </div>
-
-    <h1>Etsy Listing</h1>
-    <p class="subtitle">DIGITAL BACKGROUNDS</p>
-
-    <button class="btn" id="startBtn">START</button>
-
-    <div id="status" class="status-circle">
-      <svg viewBox="0 0 32 32" aria-hidden="true" class="check-icon">
-        <path d="M8 17 L14 23 L24 11"></path>
-      </svg>
-    </div>
-  </div>
-
-  <!-- ─── YOUTUBE CARD ─────────────────────────────────────────── -->
-  <div class="window youtube">
-    <div class="window-header">
-      <div class="close-btn">×</div>
-      <img src="youtube.png" alt="YouTube logo" class="badge">
-    </div>
-
-    <h1>YouTube Video</h1>
-    <p class="subtitle">Kozy Kove Channel</p>
-
-    <a href="youtube-koze-kove.html">
-      <button class="btn">START</button>
-    </a>
-
-    <div id="ytStatus" class="status-circle">
-      <svg viewBox="0 0 32 32" class="check-icon">
-        <path d="M8 17 L14 23 L24 11"></path>
-      </svg>
-    </div>
-  </div>
-
-      <!-- ─── New Module #3 ────────────────────── -->
+  <div class="modules">
+    <!-- ─── ETSY CARD ─────────────────────────────────────────────────── -->
     <div class="window">
       <div class="window-header">
         <div class="close-btn">×</div>
-        <!-- optional logo -->
+        <img src="etsy.png" alt="Etsy logo" class="badge">
+      </div>
+      <h1>Etsy Listing</h1>
+      <p class="subtitle">DIGITAL BACKGROUNDS</p>
+      <button class="btn" id="startBtn">START</button>
+      <div id="status" class="status-circle">
+        <svg viewBox="0 0 32 32" aria-hidden="true" class="check-icon">
+          <path d="M8 17 L14 23 L24 11"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ─── YOUTUBE CARD ───────────────────────────────────────────────── -->
+    <div class="window youtube">
+      <div class="window-header">
+        <div class="close-btn">×</div>
+        <img src="youtube.png" alt="YouTube logo" class="badge">
+      </div>
+      <h1>YouTube Video</h1>
+      <p class="subtitle">Kozy Kove Channel</p>
+      <a href="youtube-koze-kove.html" class="btn-link">
+        <button class="btn">START</button>
+      </a>
+      <div id="ytStatus" class="status-circle">
+        <svg viewBox="0 0 32 32" class="check-icon">
+          <path d="M8 17 L14 23 L24 11"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ─── MODULE 3 CARD ──────────────────────────────────────────────── -->
+    <div class="window">
+      <div class="window-header">
+        <div class="close-btn">×</div>
       </div>
       <h1>Module 3 Title</h1>
       <p class="subtitle">Short subtitle</p>
@@ -66,7 +60,7 @@
       </div>
     </div>
 
-    <!-- ─── New Module #4 ────────────────────── -->
+    <!-- ─── MODULE 4 CARD ──────────────────────────────────────────────── -->
     <div class="window">
       <div class="window-header">
         <div class="close-btn">×</div>
@@ -80,54 +74,54 @@
         </svg>
       </div>
     </div>
-  </div>
-  
-  <!-- ─── SHARED SCRIPT ──────────────────────────────────────────── -->
-<script>
-  // ─── daily auto-reset ─────────────────────────────────────
-  const today = new Date().toLocaleDateString();
-  if (localStorage.getItem('lastDay') !== today) {
-    localStorage.setItem('etsyChecklistComplete',  'false');
-    localStorage.setItem('youtubeChecklistComplete','false');
-    localStorage.setItem('lastDay', today);
-  }
+  </div><!-- /.modules -->
 
-  // — Etsy card status & link
-  const statusEl = document.getElementById('status');
-  if (localStorage.getItem('etsyChecklistComplete') === 'true') {
-    statusEl.classList.add('done');
-  }
-  document.getElementById('startBtn').onclick = () => {
-    window.location.href = 'etsy-checklist.html';
-  };
+  <!-- ─── SHARED SCRIPT ─────────────────────────────────────────────── -->
+  <script>
+    // daily auto-reset
+    const today = new Date().toLocaleDateString();
+    if (localStorage.getItem('lastDay') !== today) {
+      localStorage.setItem('etsyChecklistComplete',   'false');
+      localStorage.setItem('youtubeChecklistComplete','false');
+      localStorage.setItem('mod3Complete',            'false');
+      localStorage.setItem('mod4Complete',            'false');
+      localStorage.setItem('lastDay', today);
+    }
 
-  // — YouTube card status
-  const ytStatus = document.getElementById('ytStatus');
-  if (localStorage.getItem('youtubeChecklistComplete') === 'true') {
-    ytStatus.classList.add('done');
-  }
-  // (You’re already using an <a> around your button, so no JS needed here for navigation.)
-// … existing Etsy & YouTube code …
+    // Etsy card
+    const statusEl = document.getElementById('status');
+    if (localStorage.getItem('etsyChecklistComplete') === 'true') {
+      statusEl.classList.add('done');
+    }
+    document.getElementById('startBtn').onclick = () => {
+      window.location.href = 'etsy-checklist.html';
+    };
 
-// Module 3
-const mod3Status = document.getElementById('mod3Status');
-if (localStorage.getItem('mod3Complete') === 'true') {
-  mod3Status.classList.add('done');
-}
-document.getElementById('mod3Start').onclick = () => {
-  window.location.href = 'module3-checklist.html';
-};
+    // YouTube card
+    const ytStatus = document.getElementById('ytStatus');
+    if (localStorage.getItem('youtubeChecklistComplete') === 'true') {
+      ytStatus.classList.add('done');
+    }
+    // link is pure HTML <a> so no JS needed for navigation
 
-// Module 4
-const mod4Status = document.getElementById('mod4Status');
-if (localStorage.getItem('mod4Complete') === 'true') {
-  mod4Status.classList.add('done');
-}
-document.getElementById('mod4Start').onclick = () => {
-  window.location.href = 'module4-checklist.html';
-};
+    // Module 3
+    const mod3Status = document.getElementById('mod3Status');
+    if (localStorage.getItem('mod3Complete') === 'true') {
+      mod3Status.classList.add('done');
+    }
+    document.getElementById('mod3Start').onclick = () => {
+      window.location.href = 'module3-checklist.html';
+    };
 
-</script>
+    // Module 4
+    const mod4Status = document.getElementById('mod4Status');
+    if (localStorage.getItem('mod4Complete') === 'true') {
+      mod4Status.classList.add('done');
+    }
+    document.getElementById('mod4Start').onclick = () => {
+      window.location.href = 'module4-checklist.html';
+    };
+  </script>
 
 </body>
 </html>
